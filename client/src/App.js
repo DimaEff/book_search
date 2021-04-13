@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {connect} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import * as styles from './AppStyles';
+import SearchBar from "./Components/SearchBar/SearchBar";
+import SearchList from "./Components/SearchList/SearchList";
+import Cover from "./Components/SearchList/Cover";
+
+
+function App(props) {
+
+    return (
+        <styles.App>
+            <div>Search</div>
+            <SearchBar/>
+            {props.books.length > 0 && <SearchList books={props.books} />}
+        </styles.App>
+    );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        books: state.books.foundBooks,
+        coverId: state.books.coverId,
+    }
+}
+
+export default connect(mapStateToProps, {})(App);
