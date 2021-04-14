@@ -1,5 +1,5 @@
-import React from 'react';
-import {useForm} from "react-hook-form";
+import React, {useEffect, useState} from 'react';
+import {useForm, useWatch} from "react-hook-form";
 import {connect} from "react-redux";
 
 import {searchBook} from "../../Redux/book_reducer";
@@ -7,17 +7,32 @@ import * as styles from './SearchBarStyles';
 
 
 const SearchBar = (props) => {
-    const {register, handleSubmit} = useForm({
+    const [timerId, setTimerId] = useState(null);
+
+    const {register, handleSubmit, control} = useForm({
         mode: "onBlur",
     })
 
-    const search = (data) => {
-        props.searchBook(data.searchBar)
+    let test = (data) => {
+        let searchId = setTimeout(() => props.searchBook(data.searchBar), 1000, data);
+        setTimerId(searchId)
+    };
+    const testSetTimeout = (data) => {
+        clearTimeout(timerId);
+        test(data)
     }
+
+    const searchBar = useWatch({ control, name: 'searchBar' })
+
+    useEffect(() => {
+        if(searchBar && searchBar.length > 0) {
+            handleSubmit(data => testSetTimeout(data))()
+        }
+    }, [searchBar, handleSubmit])
 
     return (
         <styles.SearchBar>
-            <form onSubmit={handleSubmit(search)}>
+            <form>
                 <input type="text" {...register('searchBar')}/>
                 <button type={'submit'}>Search</button>
             </form>
