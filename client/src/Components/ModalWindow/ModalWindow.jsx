@@ -8,28 +8,31 @@ const ModalWindow = (props) => {
     return (
         <styles.ModalWrapper onClick={props.hideModalWindow}>
             <styles.ModalWindow onClick={e => e.stopPropagation()}>
-                <Cover coverId={props.coverId}/>
+
+                <styles.Title>
+                    {props.displayBook.title}
+                </styles.Title>
+                <Cover coverId={props.displayBook.coverId}/>
+
                 <styles.BookInfo>
-                    <styles.InfoString>
-                        {props.title}
-                    </styles.InfoString>
-                    <styles.InfoString>
-                        <div>
-                            {props.author}
-                        </div>
-                        <div>
-                            {props.publicDate}
-                        </div>
-                    </styles.InfoString>
-                    <styles.InfoString>
-                        <div>
-                            {props.publisher}
-                        </div>
-                        <div>
-                            {props.ISBN}
-                        </div>
-                    </styles.InfoString>
+                    <styles.BookInfoItem area={'author'}>
+                        <div>Author:</div>
+                        {props.displayBook.author}
+                    </styles.BookInfoItem>
+                    <styles.BookInfoItem area={'publicDate'}>
+                        <div>Public date:</div>
+                        {props.displayBook.publicDate}
+                    </styles.BookInfoItem>
+                    <styles.BookInfoItem area={'publisher'}>
+                        <div>Publisher:</div>
+                        {props.displayBook.publisher}
+                    </styles.BookInfoItem>
+                    <styles.BookInfoItem area={'isbn'}>
+                        <div>ISBN:</div>
+                        {props.displayBook.ISBN}
+                    </styles.BookInfoItem>
                 </styles.BookInfo>
+
             </styles.ModalWindow>
         </styles.ModalWrapper>
     );

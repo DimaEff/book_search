@@ -2,11 +2,13 @@ import {bookAPI} from "../api/book_api";
 
 
 const SEARCH_BOOKS = 'SEARCH_BOOKS';
-const IN_SEARCH = 'IN_SEARCH';
+const DISPLAY_BOOK = 'DISPLAY_BOOK';
 
 const initialState = {
     foundBooks: [],
     coverId: null,
+    isShowModal: false,
+    displayBookId: null,
     inSearch: false,
 }
 
@@ -16,13 +18,13 @@ const bookReducer = (state=initialState, action) => {
             return {
                 ...state,
                 foundBooks: [...action.books],
-                coverId: action.cover,
             }
 
-        case IN_SEARCH:
+        case DISPLAY_BOOK:
             return {
                 ...state,
-                inSearch: action.inSearch,
+                isShowModal: action.isShowModal,
+                displayBookId: action.bookId,
             }
 
         default:
@@ -39,7 +41,15 @@ export const searchBook = (title) => (dispatch) => {
     })
 }
 
+export const showModalWindow = (bookId) => (dispatch) => {
+    dispatch(setDisplayBook(bookId, true));
+}
+
+export const hideModalWindow = () => (dispatch) => {
+    dispatch(setDisplayBook(null, false));
+}
+
 const search = (books, cover) => ({type: SEARCH_BOOKS, books, cover});
-const inSearch = (inSearch) => ({type: IN_SEARCH, inSearch});
+const setDisplayBook = (bookId, isShowModal) => ({type: DISPLAY_BOOK, bookId, isShowModal});
 
 export default bookReducer;

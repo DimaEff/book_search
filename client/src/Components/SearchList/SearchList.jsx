@@ -8,7 +8,8 @@ const SearchList = (props) => {
     const books = props.books.map((book, index) => {
         return (
             <div key={index}>
-                <SearchListItem coverId={book.cover_i} title={book.title} showModalWindow={props.showModalWindow}/>
+                <SearchListItem bookId={index} coverId={book.cover_i} title={book.title}
+                                showModalWindow={props.showModalWindow}/>
             </div>
         )
     })
