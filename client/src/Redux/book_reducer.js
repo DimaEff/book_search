@@ -5,7 +5,7 @@ const SEARCH_BOOKS = 'SEARCH_BOOKS';
 const IN_SEARCH = 'IN_SEARCH';
 
 const initialState = {
-    foundBooks: [{title: 'My book', author: 'I`m'},],
+    foundBooks: [],
     coverId: null,
     inSearch: false,
 }

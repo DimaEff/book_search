@@ -4,12 +4,11 @@ import styled from "styled-components";
 export const SearchList = styled.div`
   display: flex;
   flex-flow: column;
+  width: 100%;
 `
 
 export const SearchListItem = styled.div`
   display: flex;
-`
-
-export const Cover = styled.img`
-  width: 50px;
+  height: 75px;
+  cursor: pointer;
 `

@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {connect} from "react-redux";
 
 import {searchBook} from "../../Redux/book_reducer";
+import * as styles from './SearchBarStyles';
 
 
 const SearchBar = (props) => {
@@ -15,12 +16,12 @@ const SearchBar = (props) => {
     }
 
     return (
-        <div>
+        <styles.SearchBar>
             <form onSubmit={handleSubmit(search)}>
                 <input type="text" {...register('searchBar')}/>
                 <button type={'submit'}>Search</button>
             </form>
-        </div>
+        </styles.SearchBar>
     );
 };
 
