@@ -18,6 +18,6 @@ export const getDisplayBook = createSelector(getDisplayBookId, getDisplayBookInf
         author: displayBook.author_name,
         publicDate: displayBook.first_publish_year,
         publisher: displayBook.publisher[0],
-        ISBN: displayBook.isbn[0],
+        ISBN: (displayBook.isbn?.[0] || ('-'.repeat(5))),
     }
 });
