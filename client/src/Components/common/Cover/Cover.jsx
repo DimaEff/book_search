@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as styles from './CoverStyles';
-import defaultBookCover from '../../assets/img/book.svg';
+import defaultBookCover from '../../../assets/img/book.svg';
 
 
 const Cover = (props) => {

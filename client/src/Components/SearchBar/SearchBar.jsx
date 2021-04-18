@@ -1,8 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import {connect} from "react-redux";
 
-import {searchBook} from "../../Redux/book_reducer";
 import * as styles from './SearchBarStyles';
 import useSearchOnChange from "../../custom_hooks/book_hooks";
 import searchIcon from "../../assets/img/searchIcon.svg";
@@ -16,11 +14,11 @@ const SearchBar = (props) => {
     useSearchOnChange('searchBar', control, props.searchBook, handleSubmit)
 
     const onSubmit = (data) => {
-        props.searchBook()
+        props.searchBook(data.searchBar)
     }
 
     return (
-        <styles.SearchBar onSubmit={handleSubmit(onSubmit)}>
+        <styles.SearchBar inSearch={props.inSearch} onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" autoComplete={'off'} {...register('searchBar')}/>
                 <div/>
                 <styles.SearchButton type={'submit'}>
@@ -30,11 +28,4 @@ const SearchBar = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        books: state.books.foundBooks,
-        inSearch: state.books.inSearch,
-    }
-}
-
-export default connect(mapStateToProps, {searchBook})(SearchBar);
+export default SearchBar;

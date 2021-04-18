@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as styles from './SearchListStyles';
-import Cover from "../Cover/Cover";
+import Cover from "../common/Cover/Cover";
 
 
 const SearchListItem = (props) => {

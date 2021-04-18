@@ -1,8 +1,8 @@
 import {bookAPI} from "../api/book_api";
 
 
-const SEARCH_BOOKS = 'SEARCH_BOOKS';
-const DISPLAY_BOOK = 'DISPLAY_BOOK';
+const SET_BOOKS = 'SET_BOOKS';
+const DISPLAY_MODAL_BOOK = 'DISPLAY_MODAL_BOOK';
 
 const initialState = {
     foundBooks: [],
@@ -12,15 +12,16 @@ const initialState = {
     inSearch: false,
 }
 
-const bookReducer = (state=initialState, action) => {
+const bookReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEARCH_BOOKS:
+        case SET_BOOKS:
             return {
                 ...state,
                 foundBooks: [...action.books],
+                inSearch: action.inSearch,
             }
 
-        case DISPLAY_BOOK:
+        case DISPLAY_MODAL_BOOK:
             return {
                 ...state,
                 isShowModal: action.isShowModal,
@@ -33,11 +34,22 @@ const bookReducer = (state=initialState, action) => {
 }
 
 export const searchBook = (title) => (dispatch) => {
-    const searchTitle = title.split(' ').join('+');
+    const splitTitle = title.split(' ');
+    if (splitTitle.join('').length === 0) return
+
+    dispatch(setBooks());
+
+    const searchTitle = splitTitle.join('+');
+
     bookAPI.searchBook(searchTitle).then(data => {
+        if (data.length === 0) {
+            dispatch(setBooks(false));
+            return
+        }
+
         const books = data.slice(0, 5);
         const cover = books[0].cover_i;
-        dispatch(search(books, cover));
+        dispatch(setBooks(false, books, cover));
     })
 }
 
@@ -49,7 +61,7 @@ export const hideModalWindow = () => (dispatch) => {
     dispatch(setDisplayBook(null, false));
 }
 
-const search = (books, cover) => ({type: SEARCH_BOOKS, books, cover});
-const setDisplayBook = (bookId, isShowModal) => ({type: DISPLAY_BOOK, bookId, isShowModal});
+const setBooks = (inSearch = true, books = [], cover = null,) => ({type: SET_BOOKS, books, cover, inSearch});
+const setDisplayBook = (bookId, isShowModal) => ({type: DISPLAY_MODAL_BOOK, bookId, isShowModal});
 
 export default bookReducer;

@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 
 
 const slAnimation = keyframes`
@@ -20,9 +20,9 @@ export const SearchList = styled.div`
   width: 100%;
   max-height: 55vh;
   border-radius: 30px;
-  box-shadow:0 0 15px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.2);
   overflow: auto;
-
+  
   animation: ${slAnimation} 1s forwards;
 `
 
@@ -33,13 +33,13 @@ export const SearchListItem = styled.div`
   min-height: 75px;
   cursor: pointer;
   margin: 5px;
-  
+
   div {
     display: flex;
     flex-flow: column;
     margin-left: 5px;
   }
-  
+
   span {
     position: absolute;
     height: 70%;
@@ -49,7 +49,7 @@ export const SearchListItem = styled.div`
 `
 
 export const BookInfo = styled.div`
-  
+
   div {
     font-size: small;
     color: gray;
