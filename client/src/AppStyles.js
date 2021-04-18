@@ -5,6 +5,7 @@ export const App = styled.main`
   justify-content: center;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 `
 
 export const Content = styled.div`
@@ -13,6 +14,9 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  padding-block: 25vh;
+  height: 100vh;
+  max-width: 500px;
+  //padding-block: 5vh;
+  padding-right: 5px;
+  padding-left: 5px;
 `

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {searchBook} from "../../Redux/book_reducer";
 import * as styles from './SearchBarStyles';
 import useSearchOnChange from "../../custom_hooks/book_hooks";
+import searchIcon from "../../assets/img/searchIcon.svg";
 
 
 const SearchBar = (props) => {
@@ -14,12 +15,17 @@ const SearchBar = (props) => {
 
     useSearchOnChange('searchBar', control, props.searchBook, handleSubmit)
 
+    const onSubmit = (data) => {
+        props.searchBook()
+    }
+
     return (
-        <styles.SearchBar>
-            <form>
-                <input type="text" {...register('searchBar')}/>
-                <button type={'submit'}>Search</button>
-            </form>
+        <styles.SearchBar onSubmit={handleSubmit(onSubmit)}>
+                <input type="text" autoComplete={'off'} {...register('searchBar')}/>
+                <div/>
+                <styles.SearchButton type={'submit'}>
+                    <img src={searchIcon} alt=""/>
+                </styles.SearchButton>
         </styles.SearchBar>
     );
 };

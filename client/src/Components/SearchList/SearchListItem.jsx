@@ -7,10 +7,14 @@ import Cover from "../Cover/Cover";
 const SearchListItem = (props) => {
     return (
         <styles.SearchListItem onClick={() => props.showModalWindow(props.bookId)}>
+            <span/>
             <div>
                 <Cover coverId={props.coverId}/>
             </div>
-            <div>{props.title}</div>
+            <styles.BookInfo>
+                {props.title}
+                <div>{props.author}</div>
+            </styles.BookInfo>
         </styles.SearchListItem>
     );
 };

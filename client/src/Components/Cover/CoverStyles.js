@@ -4,12 +4,6 @@ export const Cover = styled.div`
   display: flex;
   justify-content: center;
   width: 20vw;
-  min-width: 50px;
-  max-width: 170px;
-  height: 100%;
+  max-width: 50px;
   margin: 5px;
-  //overflow: hidden;
-  'img': {
-    max-width: 180px;
-  }
 `

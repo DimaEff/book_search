@@ -7,6 +7,7 @@ import SearchList from "./Components/SearchList/SearchList";
 import ModalWindow from "./Components/ModalWindow/ModalWindow";
 import {getDisplayBook, getFoundBooks, isShowModal} from "./selectors/book_selectors";
 import {showModalWindow, hideModalWindow} from "./Redux/book_reducer";
+import Logo from "./Components/Logo/Logo";
 
 
 function App(props) {
@@ -21,7 +22,7 @@ function App(props) {
     return (
         <styles.App>
             <styles.Content>
-                <div>Search</div>
+                <Logo />
                 <SearchBar/>
                 {props.books.length > 0 &&
                 <SearchList books={props.books} showModalWindow={showModalWindow}/>}

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
+  z-index: 5;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -20,8 +21,10 @@ export const ModalWindow = styled.div`
   width: 300px;
   max-width: 100%;
   max-height: 85%;
+  padding: 15px;
   background-color: white;
-  border: 3px solid black;
+  border-radius: 30px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.2);
 `
 
 export const BookInfo = styled.div`
