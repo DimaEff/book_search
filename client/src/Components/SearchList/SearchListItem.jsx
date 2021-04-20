@@ -5,6 +5,14 @@ import Cover from "../common/Cover/Cover";
 
 
 const SearchListItem = (props) => {
+    if (!props.title) return (
+        <styles.SearchListItem>
+            <styles.NotFoundMessage>
+                <div>book not found</div>
+            </styles.NotFoundMessage>
+        </styles.SearchListItem>
+    )
+
     return (
         <styles.SearchListItem onClick={() => props.showModalWindow(props.bookId)}>
             <span/>

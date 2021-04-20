@@ -17,8 +17,7 @@ function App(props) {
                 <Logo />
                 <SearchBarContainer />
                 {props.books.length > 0 && <SearchListContainer />}
-                {props.isShowModal && <ModalWindowContainer />
-                }
+                {props.isShowModal && <ModalWindowContainer />}
             </styles.Content>
         </styles.App>
     );

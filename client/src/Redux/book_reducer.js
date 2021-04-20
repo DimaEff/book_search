@@ -1,8 +1,8 @@
 import {bookAPI} from "../api/book_api";
 
 
-const SET_BOOKS = 'SET_BOOKS';
-const DISPLAY_MODAL_BOOK = 'DISPLAY_MODAL_BOOK';
+const SET_BOOKS = 'book_reducer/SET_BOOKS';
+const DISPLAY_MODAL_BOOK = 'book_reducer/DISPLAY_MODAL_BOOK';
 
 const initialState = {
     foundBooks: [],
@@ -33,7 +33,7 @@ const bookReducer = (state = initialState, action) => {
     }
 }
 
-export const searchBook = (title) => (dispatch) => {
+export const searchBook = (title) => async (dispatch) => {
     const splitTitle = title.split(' ');
     if (splitTitle.join('').length === 0) return
 
@@ -41,16 +41,17 @@ export const searchBook = (title) => (dispatch) => {
 
     const searchTitle = splitTitle.join('+');
 
-    bookAPI.searchBook(searchTitle).then(data => {
-        if (data.length === 0) {
-            dispatch(setBooks(false));
-            return
-        }
+    const data = await bookAPI.searchBook(searchTitle)
 
-        const books = data.slice(0, 5);
-        const cover = books[0].cover_i;
-        dispatch(setBooks(false, books, cover));
-    })
+    if (data.length === 0) {
+        dispatch(setBooks(false, [false]));
+        return
+    }
+
+    const books = data.slice(0, 5);
+    const cover = books[0].cover_i;
+    dispatch(setBooks(false, books, cover));
+
 }
 
 export const showModalWindow = (bookId) => (dispatch) => {

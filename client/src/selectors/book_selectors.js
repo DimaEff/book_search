@@ -4,6 +4,7 @@ export const getFoundBooks = state => state.books.foundBooks;
 
 export const isShowModal = state => state.books.isShowModal;
 export const isShowBooks = state => state.books.isShowBooks;
+export const inSearch = state => state.books.inSearch;
 
 const getDisplayBookId = state => state.books.displayBookId;
 const getDisplayBookInfo = (state) => {
@@ -24,3 +25,4 @@ export const getDisplayBook = createSelector(getDisplayBookId, getDisplayBookInf
         ISBN: displayBook.isbn?.[0] || notValue,
     }
 });
+

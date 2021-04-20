@@ -55,3 +55,10 @@ export const BookInfo = styled.div`
     color: gray;
   }
 `
+
+export const NotFoundMessage = styled.div`
+  width: 100%;
+  color: grey;
+  font-weight: bold;
+  cursor: default;
+`

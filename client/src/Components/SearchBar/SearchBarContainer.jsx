@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import {searchBook} from "../../Redux/book_reducer";
 import SearchBar from "./SearchBar";
+import {getFoundBooks, inSearch} from "../../selectors/book_selectors";
 
 
 const SearchBarContainer = (props) => {
@@ -12,8 +13,8 @@ const SearchBarContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books.foundBooks,
-        inSearch: state.books.inSearch,
+        books: getFoundBooks(state),
+        inSearch: inSearch(state),
     }
 }
 
